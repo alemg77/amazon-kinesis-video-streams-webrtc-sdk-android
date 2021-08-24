@@ -21,12 +21,15 @@
  * Fill-in `Pool name`
  * Click `Review defaults`
  * Click `Create user pool`
- * Copy `Pool Id`
+ * Copy `Pool Id`                                 us-east-1_c6WSXemvf
  * Select `App clients` in the left navigation.
  * Click `Add an app client`
  * Fill-in `App client name`
  * Click `Create app client`
  * Click `Show details` and copy `App client id` and `App client secret`  
+
+app client id 1sit7756r3v4t7op5ck1l7vlg7
+3bbnqfth48409eel3fs32rqdl6imibs3c3upt05s9r5u9ucjglr
 
 ### 3. Create an identity pool
 
@@ -39,24 +42,33 @@
  * There will be details for 2 roles. Look at the one for `authenticated identities` and click `Edit` next to the policy document and your policy should look like this after editing:
 
 ```
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-          {
-            "Effect": "Allow",
-            "Action": [
-              "cognito-identity:*",
-              "kinesisvideo:*"
-            ],
-            "Resource": [
-              "*"
-            ]
-          }
-        ]
-      }
+{
+"Version": "2012-10-17",
+"Statement": [
+  {
+    "Effect": "Allow",
+    "Action": [
+      "cognito-identity:*",
+      "kinesisvideo:*"
+    ],
+    "Resource": [
+      "*"
+    ]
+  }
+]
+}
+      
 ```
 * Click `Allow`
 * Copy the `Identity Pool Id` from the code snippets on the screen.  
+
+// Initialize the Amazon Cognito credentials provider
+CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+getApplicationContext(),
+"us-east-1:ed2aa246-8a74-4d96-8b20-f17d450032f6", // Identity pool ID
+Regions.US_EAST_1 // Region
+);
+
 
 ## 4. Build and run the demo application using Android Studio
 
