@@ -15,8 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -53,7 +51,6 @@ import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 
-import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,32 +70,30 @@ public class WebRtcActivity extends AppCompatActivity {
 
 
     private static String WSS_SIGN_URL =
-            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MMGTRN3MX%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T192033Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDUaDG%252FrTTRcgEIydtnuHiKCAdvo6YD1AmS2suQrm7PZBLY4WRxhE2T28WRXiIGaisi98YLT79zJQuKF9YS4b7HUVoNYZP5vlFbU4tP5yb0YA%252BUve5TaxU64mBz76zMsVAaKoO14htUKN2fZeA24ke30i9jQbApiBQ39XUWtNIoUiwvf%252B6bR9d5p0sfMVlNBuhXC494ogbKxjwYyKNi9yuNvf8%252FOYq1%252BycbHH%252FC8VrjcFSgwEnvYt6SE3Q6qebCqDLUdzUc%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=36acef32c3e13acac51fde17ad1873dfdbee32f20cd8dc0519a98ba90b26cd4c"
-    ;
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MCN47OEWP%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T193932Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDUaDL25aFrfWO4RG7LyZyKCAb8MRPRd3t4gh2O25pT2xp6%252BlLmbkqhOJHGfybmW361U4yAtlVVpxGMj43SfrBiwkxZ7D9UrMQKnUVUz%252FS9RVpq%252BP1zRKY7mm9VrYqP4sznDWmtBLjUgDr2bx11pMSgBfWTUKsN5fdvuJlX7QiKwetuIs%252BQExYbw5j9PRkV4M4%252Fz3Xwo9LqxjwYyKG0%252BT1whE5ZsED0u4DM%252FHQ%252B6tcDve4S37uwjHs6EtTa1%252Bt5EL4w3SY0%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=fde26e9d0351e358a00d14a8ba91b122deeb2cb39cf2a4726894782d875e9fd6"
+            ;
 
-    private static String PASSWORD1 = "xeSK7TocJbyw0K8W+q62j9KheZy2aUp22orlWPgRlNc=";
+    private static String PASSWORD1 = "ughUVe/PZ5Acvyz/bdJU2fN6q8eFdCl7mhpjSV18RfY=";
 
     private static List<String> URIS1 = Stream.of(
-            "turn:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
     private static String USERNAME1 =
-            "1642879533:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            "1642880672:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
             ;
 
-    private static String PASSWORD2 = "9GJYHWqfs70okgInZBsIfeb2EVQxTn7AFx7EeLcxWMY=";
+    private static String PASSWORD2 = "iwg9pdgbUjMNf97rHHwtYLrEGSa1Mw+ihO3rKZybd3g=";
 
     private static List<String> URIS2 = Stream.of(
-            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
-    private static String USERNAME2 =
-            "1642879533:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
-            ;
+    private static String USERNAME2 = USERNAME1;
 
     private static final String CHANNEL_ID = "WebRtcDataChannel";
     private static final boolean ENABLE_INTEL_VP8_ENCODER = true;
@@ -132,8 +127,6 @@ public class WebRtcActivity extends AppCompatActivity {
 
     private boolean master = true;
 
-    private EditText dataChannelText = null;
-    private Button sendDataChannelButton = null;
 
     private String mClientId;
 
@@ -430,9 +423,6 @@ public class WebRtcActivity extends AppCompatActivity {
         remoteView = findViewById(R.id.remote_view);
         remoteView.init(rootEglBase.getEglBaseContext(), null);
 
-        dataChannelText = findViewById(R.id.data_channel_text);
-        sendDataChannelButton = findViewById(R.id.send_data_channel_text);
-
         createNotificationChannel();
     }
 
@@ -577,15 +567,6 @@ public class WebRtcActivity extends AppCompatActivity {
             public void onStateChange() {
                 Log.d(TAG, "Local Data Channel onStateChange: state: " + localDataChannel.state().toString());
 
-                if (sendDataChannelButton != null) {
-                    runOnUiThread(() -> {
-                        if (localDataChannel.state() == DataChannel.State.OPEN) {
-                            sendDataChannelButton.setEnabled(true);
-                        } else {
-                            sendDataChannelButton.setEnabled(false);
-                        }
-                    });
-                }
             }
 
             @Override
@@ -594,15 +575,7 @@ public class WebRtcActivity extends AppCompatActivity {
             }
         });
 
-        sendDataChannelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                localDataChannel.send(new DataChannel.Buffer(
-                        ByteBuffer.wrap(dataChannelText.getText().toString()
-                                .getBytes(Charset.defaultCharset())), false));
-                dataChannelText.setText("");
-            }
-        });
+
     }
 
     // when mobile sdk is viewer
@@ -678,7 +651,7 @@ public class WebRtcActivity extends AppCompatActivity {
                         Log.d(TAG, "remoteVideoTrackId=" + remoteVideoTrack.id() + " videoTrackState=" + remoteVideoTrack.state());
                         resizeLocalView();
                         remoteVideoTrack.addSink(remoteView);
-                        resizeRemoteView();
+                        //resizeRemoteView();
                     } catch (Exception e) {
                         Log.e(TAG, "Error in setting remote video view" + e);
                     }
@@ -690,7 +663,6 @@ public class WebRtcActivity extends AppCompatActivity {
 
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private void resizeLocalView() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         final ViewGroup.LayoutParams lp = localView.getLayoutParams();
@@ -698,64 +670,8 @@ public class WebRtcActivity extends AppCompatActivity {
         lp.height = (int) (displayMetrics.heightPixels * 0.25);
         lp.width = (int) (displayMetrics.widthPixels * 0.25);
         localView.setLayoutParams(lp);
-        localView.setOnTouchListener(new View.OnTouchListener() {
-            private final int mMarginRight = displayMetrics.widthPixels;
-            private final int mMarginBottom = displayMetrics.heightPixels;
-            private int deltaOfDownXAndMargin, deltaOfDownYAndMargin;
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                final int X = (int) motionEvent.getRawX();
-                final int Y = (int) motionEvent.getRawY();
-                switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-                    case MotionEvent.ACTION_DOWN:
-                        FrameLayout.LayoutParams lParams = (FrameLayout.LayoutParams) lp;
-
-                        deltaOfDownXAndMargin = X + lParams.rightMargin;
-                        deltaOfDownYAndMargin = Y + lParams.bottomMargin;
-
-                        return true;
-                    case MotionEvent.ACTION_MOVE:
-                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) lp;
-
-                        layoutParams.rightMargin = deltaOfDownXAndMargin - X;
-                        layoutParams.bottomMargin = deltaOfDownYAndMargin - Y;
-
-                        // shouldn't be out of screen
-                        if (layoutParams.rightMargin >= mMarginRight - lp.width) {
-                            layoutParams.rightMargin = mMarginRight - lp.width;
-                        }
-
-                        if (layoutParams.bottomMargin >= mMarginBottom - lp.height) {
-                            layoutParams.bottomMargin = mMarginBottom - lp.height;
-                        }
-
-                        if (layoutParams.rightMargin <= 0) {
-                            layoutParams.rightMargin = 0;
-                        }
-
-                        if (layoutParams.bottomMargin <= 0) {
-                            layoutParams.bottomMargin = 0;
-                        }
-
-                        localView.setLayoutParams(layoutParams);
-                }
-                return false;
-            }
-        });
     }
 
-    private void resizeRemoteView() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            final ViewGroup.LayoutParams lp = remoteView.getLayoutParams();
-            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            lp.height = (int) (displayMetrics.heightPixels * 0.75);
-            lp.width = (int) (displayMetrics.widthPixels * 0.75);
-            remoteView.setLayoutParams(lp);
-            localView.bringToFront();
-        }
-    }
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
