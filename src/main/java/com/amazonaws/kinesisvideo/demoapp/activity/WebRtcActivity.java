@@ -82,30 +82,30 @@ public class WebRtcActivity extends AppCompatActivity {
 
 
     private static String WSS_SIGN_URL =
-            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MB2GCZUGT%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T185003Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDQaDCk8JwhQEI0oyJ44XCKCAU6MMItb%252BCCuN6JXN0BW7qVbOjHy3HRnAc0u1Cppd3YMXvabVTojiWv6CwRi6wc%252FCaaEGNkZuqciLJnLirANqXRkWQi9RR4Z9hNkCytJ4spM2HZh6VBynvlf%252BGTq5LJihAFnxavse6ePp41B4SxLM%252BmiBmta5CkI4kRKgx31dQSSAfQo26OxjwYyKDVlDOMsVWZHHmklabh9EOeW%252B3xf1oorAVkhV9liG2d9kaE4nKeWiZs%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=fa3ef84b481f3b06db832234671e8d4fdfeae78892c85b7fa8e44e9100436a06"
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MF6O72EH3%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T190119Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDQaDOrKe2Ib5JmK0f2i3SKCAf6rAf%252BBbiejj9gq0b4RatuybzrwsVK1e83Xmqz%252FkOmvK%252FvpSU9zmZTn%252F1BCYR71NFk13bunDtHPqn7RTjNgu4dsiWsfJTOaYZr%252Fe173CfzxYvvCym4PDJ3P5OXvMG4P%252BRx6V%252F%252BDezun8et9mLSHU%252BaaL8F4kltykmCF0q%252FBbSTnwWco%252F6ixjwYyKHSsN7SEM5A4AhFboWlb7uMYMfNjITKtLpjp%252FiIzxmXAgnBDSUclfJE%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=2602402b32e9b90c10797e9e425d506aa99ca07995539f64a764a8f8d25014e1"
     ;
 
 
-    private static String PASSWORD1 = "BOo/7v34dV7fKojl5pmnpDZOkUXVB1OtXxd/SL81tqY=";
+    private static String PASSWORD1 = "atFbTLDtAvdDEFAMIHSInQPsNswzzRf5RrP0fajFdik=";
     private static String USERNAME1 =
             "1642877703:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
     ;
 
     private static List<String> URIS1 = Stream.of(
-            "turn:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
-    private static String PASSWORD2 = "0IoLKvatPHZbvuQVXo28G3hSOtxHxkecVUJMp41x7OQ=";
+    private static String PASSWORD2 = "/CA+nTZweeeBbeW1ZCnqTCs5aRXEUOWWv9hthyZ0N3Y=";
     private static String USERNAME2 =
-            "1642877703:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            "1642878379:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
             ;
 
     private static List<String> URIS2 = Stream.of(
-            "turn:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
     private static final String AudioTrackID = "KvsAudioTrack";
@@ -122,7 +122,6 @@ public class WebRtcActivity extends AppCompatActivity {
     private PeerConnectionFactory peerConnectionFactory;
 
     private VideoSource videoSource;
-    private VideoTrack localVideoTrack;
 
     private AudioManager audioManager;
     private int originalAudioMode;
@@ -136,7 +135,6 @@ public class WebRtcActivity extends AppCompatActivity {
     private PeerConnection localPeer;
 
     private EglBase rootEglBase = null;
-    private VideoCapturer videoCapturer;
 
     private final List<IceServer> peerIceServers = new ArrayList<>();
 
@@ -147,7 +145,6 @@ public class WebRtcActivity extends AppCompatActivity {
     private int mNotificationId = 0;
 
     private boolean master = true;
-    private boolean isAudioSent = false;
 
     private EditText dataChannelText = null;
     private Button sendDataChannelButton = null;
@@ -164,13 +161,6 @@ public class WebRtcActivity extends AppCompatActivity {
     private HashMap<String, Queue<IceCandidate>> pendingIceCandidatesMap = new HashMap<String, Queue<IceCandidate>>();
 
     private void initWsConnection() {
-
-        /*
-        if (master) {
-            createLocalPeerConnection();
-        }
-
-         */
 
         final String wsHost = WSS_SIGN_URL;
 
@@ -342,15 +332,6 @@ public class WebRtcActivity extends AppCompatActivity {
             videoSource = null;
         }
 
-        if (videoCapturer != null) {
-            try {
-                videoCapturer.stopCapture();
-            } catch (InterruptedException e) {
-                Log.e(TAG, "Failed to stop webrtc video capture. ", e);
-            }
-            videoCapturer = null;
-        }
-
         if (localView != null) {
             localView.release();
             localView = null;
@@ -397,11 +378,10 @@ public class WebRtcActivity extends AppCompatActivity {
         mClientId = UUID.randomUUID().toString();
 
         master = false;
-        isAudioSent = false;
 
         ArrayList<String> mUserNames = new ArrayList<String>();
         mUserNames.add(USERNAME1);
-       mUserNames.add(USERNAME2);
+        mUserNames.add(USERNAME2);
 
         ArrayList<String> mPasswords = new ArrayList<String>();
         mPasswords.add(PASSWORD1);
@@ -411,7 +391,6 @@ public class WebRtcActivity extends AppCompatActivity {
         ArrayList<List<String>> mUrisList = new ArrayList<List<String>>();
         mUrisList.add(URIS1);
         mUrisList.add(URIS2);
-
 
         mRegion = "sa-east-1";
         mCameraFacingFront = true;
@@ -427,17 +406,15 @@ public class WebRtcActivity extends AppCompatActivity {
 
         peerIceServers.add(stun);
 
-        if (mUrisList != null) {
-            for (int i = 0; i < mUrisList.size(); i++) {
-                String turnServer = mUrisList.get(i).toString();
-                if (turnServer != null) {
-                    IceServer iceServer = IceServer.builder(turnServer.replace("[", "").replace("]", ""))
-                            .setUsername(mUserNames.get(i))
-                            .setPassword(mPasswords.get(i))
-                            .createIceServer();
-                    Log.d(TAG, "IceServer details (TURN) = " + iceServer.toString());
-                    peerIceServers.add(iceServer);
-                }
+        for (int i = 0; i < mUrisList.size(); i++) {
+            String turnServer = mUrisList.get(i).toString();
+            if (turnServer != null) {
+                IceServer iceServer = IceServer.builder(turnServer.replace("[", "").replace("]", ""))
+                        .setUsername(mUserNames.get(i))
+                        .setPassword(mPasswords.get(i))
+                        .createIceServer();
+                Log.d(TAG, "IceServer details (TURN) = " + iceServer.toString());
+                peerIceServers.add(iceServer);
             }
         }
 
@@ -454,8 +431,6 @@ public class WebRtcActivity extends AppCompatActivity {
                         .setVideoEncoderFactory(new DefaultVideoEncoderFactory(rootEglBase.getEglBaseContext(), ENABLE_INTEL_VP8_ENCODER, ENABLE_H264_HIGH_PROFILE))
                         .createPeerConnectionFactory();
 
-        videoCapturer = createVideoCapturer();
-
         // Local video view
         localView = findViewById(R.id.local_view);
         localView.init(rootEglBase.getEglBaseContext(), null);
@@ -464,26 +439,10 @@ public class WebRtcActivity extends AppCompatActivity {
 
         videoSource = peerConnectionFactory.createVideoSource(false);
         SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.create(Thread.currentThread().getName(), rootEglBase.getEglBaseContext());
-        videoCapturer.initialize(surfaceTextureHelper, this.getApplicationContext(), videoSource.getCapturerObserver());
-
-        localVideoTrack = peerConnectionFactory.createVideoTrack(VideoTrackID, videoSource);
-        localVideoTrack.addSink(localView);
-
-        if (isAudioSent) {
-
-            AudioSource audioSource = peerConnectionFactory.createAudioSource(new MediaConstraints());
-            localAudioTrack = peerConnectionFactory.createAudioTrack(AudioTrackID, audioSource);
-            localAudioTrack.setEnabled(true);
-
-        }
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         originalAudioMode = audioManager.getMode();
         originalSpeakerphoneOn = audioManager.isSpeakerphoneOn();
-
-        // Start capturing video
-        videoCapturer.startCapture(VIDEO_SIZE_WIDTH, VIDEO_SIZE_HEIGHT, VIDEO_FPS);
-        localVideoTrack.setEnabled(true);
 
         remoteView = findViewById(R.id.remote_view);
         remoteView.init(rootEglBase.getEglBaseContext(), null);
@@ -630,7 +589,6 @@ public class WebRtcActivity extends AppCompatActivity {
         }
 
         addDataChannelToLocalPeer();
-        addStreamToLocalPeer();
     }
 
     private Message createIceCandidateMessage(IceCandidate iceCandidate) {
@@ -652,31 +610,6 @@ public class WebRtcActivity extends AppCompatActivity {
         return new Message("ICE_CANDIDATE", recipientClientId, senderClientId,
                 new String(Base64.encode(messagePayload.getBytes(),
                         Base64.URL_SAFE | Base64.NO_PADDING | Base64.NO_WRAP)));
-    }
-
-    private void addStreamToLocalPeer() {
-
-        MediaStream stream = peerConnectionFactory.createLocalMediaStream(LOCAL_MEDIA_STREAM_LABEL);
-
-        if (!stream.addTrack(localVideoTrack)) {
-
-            Log.e(TAG, "Add video track failed");
-        }
-
-        localPeer.addTrack(stream.videoTracks.get(0), Collections.singletonList(stream.getId()));
-
-        if (isAudioSent) {
-            if (!stream.addTrack(localAudioTrack)) {
-
-                Log.e(TAG, "Add audio track failed");
-            }
-
-            if (stream.audioTracks.size() > 0) {
-                localPeer.addTrack(stream.audioTracks.get(0), Collections.singletonList(stream.getId()));
-                Log.d(TAG, "Sending audio track ");
-            }
-        }
-
     }
 
     private void addDataChannelToLocalPeer() {
