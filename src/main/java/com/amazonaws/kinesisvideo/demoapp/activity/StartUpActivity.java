@@ -25,6 +25,20 @@ public class StartUpActivity extends AppCompatActivity {
         final AWSMobileClient auth = AWSMobileClient.getInstance();
         final AppCompatActivity thisActivity = this;
 
+
+
+
+        /*
+
+        HualaiRetrofitBuilder hualai = new HualaiRetrofitBuilder();
+
+        WebRtcData webRTCdata = hualai.getWebRTCdata();
+
+        Log.d("TAGG", webRTCdata.toString());
+
+         */
+
+
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -57,5 +71,6 @@ public class StartUpActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 }

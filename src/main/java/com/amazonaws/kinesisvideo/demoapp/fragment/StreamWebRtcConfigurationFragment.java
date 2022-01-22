@@ -225,7 +225,6 @@ public class StreamWebRtcConfigurationFragment extends Fragment {
         extras.putString(KEY_CHANNEL_NAME, channelName);
         extras.putString(KEY_CLIENT_ID, clientId);
         extras.putString(KEY_REGION, region);
-        extras.putString(KEY_REGION, region);
         extras.putString(KEY_CHANNEL_ARN, mChannelArn);
         extras.putBoolean(KEY_IS_MASTER, isMaster);
 

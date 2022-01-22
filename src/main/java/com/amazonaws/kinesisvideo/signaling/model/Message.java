@@ -13,7 +13,6 @@ public class Message {
 
     private String messagePayload;
 
-
     public Message() {}
 
     public Message(String action, String recipientClientId, String senderClientId, String messagePayload) {

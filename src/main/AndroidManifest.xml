@@ -28,11 +28,7 @@
             android:label="@string/title_activity_login">
 
             <!-- Make it a default activity -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name="com.amazonaws.kinesisvideo.demoapp.activity.SimpleNavActivity"
@@ -42,7 +38,15 @@
         <activity android:name="com.amazonaws.kinesisvideo.demoapp.activity.WebRtcActivity"
             android:label="@string/title_activity_webrtc"
             android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

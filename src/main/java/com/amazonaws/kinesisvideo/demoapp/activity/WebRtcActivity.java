@@ -1,10 +1,12 @@
 package com.amazonaws.kinesisvideo.demoapp.activity;
 
+import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_CAMERA_FRONT_FACING;
+import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_REGION;
+
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.os.Build;
@@ -26,15 +28,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSSessionCredentials;
-import com.amazonaws.kinesisvideo.demoapp.KinesisVideoWebRtcDemoApp;
 import com.amazonaws.kinesisvideo.demoapp.R;
 import com.amazonaws.kinesisvideo.signaling.SignalingListener;
 import com.amazonaws.kinesisvideo.signaling.model.Event;
 import com.amazonaws.kinesisvideo.signaling.model.Message;
 import com.amazonaws.kinesisvideo.signaling.tyrus.SignalingServiceWebSocketClient;
-import com.amazonaws.kinesisvideo.utils.AwsV4Signer;
 import com.amazonaws.kinesisvideo.webrtc.KinesisVideoPeerConnection;
 import com.amazonaws.kinesisvideo.webrtc.KinesisVideoSdpObserver;
 
@@ -63,34 +61,53 @@ import org.webrtc.VideoCapturer;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 
-import java.net.URI;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Executors;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.HashMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_CAMERA_FRONT_FACING;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_CHANNEL_ARN;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_CLIENT_ID;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_ICE_SERVER_PASSWORD;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_ICE_SERVER_TTL;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_ICE_SERVER_URI;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_ICE_SERVER_USER_NAME;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_IS_MASTER;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_REGION;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_SEND_AUDIO;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_WSS_ENDPOINT;
 
 public class WebRtcActivity extends AppCompatActivity {
     private static final String TAG = "KVSWebRtcActivity";
+
+
+    private static String WSS_SIGN_URL =
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MB2GCZUGT%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T185003Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDQaDCk8JwhQEI0oyJ44XCKCAU6MMItb%252BCCuN6JXN0BW7qVbOjHy3HRnAc0u1Cppd3YMXvabVTojiWv6CwRi6wc%252FCaaEGNkZuqciLJnLirANqXRkWQi9RR4Z9hNkCytJ4spM2HZh6VBynvlf%252BGTq5LJihAFnxavse6ePp41B4SxLM%252BmiBmta5CkI4kRKgx31dQSSAfQo26OxjwYyKDVlDOMsVWZHHmklabh9EOeW%252B3xf1oorAVkhV9liG2d9kaE4nKeWiZs%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=fa3ef84b481f3b06db832234671e8d4fdfeae78892c85b7fa8e44e9100436a06"
+    ;
+
+
+    private static String PASSWORD1 = "BOo/7v34dV7fKojl5pmnpDZOkUXVB1OtXxd/SL81tqY=";
+    private static String USERNAME1 =
+            "1642877703:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+    ;
+
+    private static List<String> URIS1 = Stream.of(
+            "turn:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+    ).collect(Collectors.toList());
+
+    private static String PASSWORD2 = "0IoLKvatPHZbvuQVXo28G3hSOtxHxkecVUJMp41x7OQ=";
+    private static String USERNAME2 =
+            "1642877703:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            ;
+
+    private static List<String> URIS2 = Stream.of(
+            "turn:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+    ).collect(Collectors.toList());
+
     private static final String AudioTrackID = "KvsAudioTrack";
     private static final String VideoTrackID = "KvsVideoTrack";
     private static final String LOCAL_MEDIA_STREAM_LABEL = "KvsLocalMediaStream";
@@ -135,15 +152,11 @@ public class WebRtcActivity extends AppCompatActivity {
     private EditText dataChannelText = null;
     private Button sendDataChannelButton = null;
 
-    private String mChannelArn;
     private String mClientId;
 
-    private String mWssEndpoint;
     private String mRegion;
 
     private boolean mCameraFacingFront = true;
-
-    private AWSCredentials mCreds = null;
 
     // Map to keep track of established peer connections by IDs
     private HashMap<String, PeerConnection> peerConnectionFoundMap = new HashMap<String, PeerConnection>();
@@ -152,26 +165,14 @@ public class WebRtcActivity extends AppCompatActivity {
 
     private void initWsConnection() {
 
-        final String masterEndpoint = mWssEndpoint + "?X-Amz-ChannelARN=" + mChannelArn;
-
-        final String viewerEndpoint = mWssEndpoint + "?X-Amz-ChannelARN=" + mChannelArn + "&X-Amz-ClientId=" + mClientId;
-
-        URI signedUri;
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mCreds = KinesisVideoWebRtcDemoApp.getCredentialsProvider().getCredentials();
-            }
-        });
-
-        signedUri = getSignedUri(masterEndpoint, viewerEndpoint);
-
+        /*
         if (master) {
             createLocalPeerConnection();
         }
 
-        final String wsHost = signedUri.toString();
+         */
+
+        final String wsHost = WSS_SIGN_URL;
 
         final SignalingListener signalingListener = new SignalingListener() {
 
@@ -185,7 +186,7 @@ public class WebRtcActivity extends AppCompatActivity {
                         new SessionDescription(SessionDescription.Type.OFFER, sdp));
 
                 recipientClientId = offerEvent.getSenderClientId();
-                Log.d(TAG, "Received SDP offer for client ID: " +  recipientClientId + ".Creating answer");
+                Log.d(TAG, "Received SDP offer for client ID: " + recipientClientId + ".Creating answer");
 
                 createSdpAnswer();
             }
@@ -214,7 +215,7 @@ public class WebRtcActivity extends AppCompatActivity {
 
                 final IceCandidate iceCandidate = Event.parseIceCandidate(message);
 
-                if(iceCandidate != null) {
+                if (iceCandidate != null) {
                     checkAndAddIceCandidate(message, iceCandidate);
                 } else {
                     Log.e(TAG, "Invalid Ice candidate");
@@ -270,7 +271,7 @@ public class WebRtcActivity extends AppCompatActivity {
         // Add any pending ICE candidates from the queue for the client ID
         Log.d(TAG, "Pending ice candidates found? " + pendingIceCandidatesMap.get(clientId));
         Queue<IceCandidate> pendingIceCandidatesQueueByClientId = pendingIceCandidatesMap.get(clientId);
-        while(pendingIceCandidatesQueueByClientId != null && !pendingIceCandidatesQueueByClientId.isEmpty()) {
+        while (pendingIceCandidatesQueueByClientId != null && !pendingIceCandidatesQueueByClientId.isEmpty()) {
             final IceCandidate iceCandidate = pendingIceCandidatesQueueByClientId.peek();
             final PeerConnection peer = peerConnectionFoundMap.get(clientId);
             final boolean addIce = peer.addIceCandidate(iceCandidate);
@@ -284,11 +285,11 @@ public class WebRtcActivity extends AppCompatActivity {
     private void checkAndAddIceCandidate(Event message, IceCandidate iceCandidate) {
         // if answer/offer is not received, it means peer connection is not found. Hold the received ICE candidates in the map.
 
-        if(!peerConnectionFoundMap.containsKey(message.getSenderClientId())) {
+        if (!peerConnectionFoundMap.containsKey(message.getSenderClientId())) {
             Log.d(TAG, "SDP exchange is not complete. Ice candidate " + iceCandidate + " + added to pending queue");
 
             // If the entry for the client ID already exists (in case of subsequent ICE candidates), update the queue
-            if(pendingIceCandidatesMap.containsKey(message.getSenderClientId())) {
+            if (pendingIceCandidatesMap.containsKey(message.getSenderClientId())) {
                 Queue<IceCandidate> pendingIceCandidatesQueueByClientId = pendingIceCandidatesMap.get(message.getSenderClientId());
                 pendingIceCandidatesQueueByClientId.add(iceCandidate);
                 pendingIceCandidatesMap.put(message.getSenderClientId(), pendingIceCandidatesQueueByClientId);
@@ -392,22 +393,28 @@ public class WebRtcActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        Intent intent = getIntent();
-        mChannelArn = intent.getStringExtra(KEY_CHANNEL_ARN);
-        mWssEndpoint = intent.getStringExtra(KEY_WSS_ENDPOINT);
 
-        mClientId = intent.getStringExtra(KEY_CLIENT_ID);
-        if (mClientId == null || mClientId.isEmpty()) {
-            mClientId = UUID.randomUUID().toString();
-        }
-        master = intent.getBooleanExtra(KEY_IS_MASTER, true);
-        isAudioSent = intent.getBooleanExtra(KEY_SEND_AUDIO, false);
-        ArrayList<String> mUserNames = intent.getStringArrayListExtra(KEY_ICE_SERVER_USER_NAME);
-        ArrayList<String> mPasswords = intent.getStringArrayListExtra(KEY_ICE_SERVER_PASSWORD);
-        ArrayList<Integer> mTTLs = intent.getIntegerArrayListExtra(KEY_ICE_SERVER_TTL);
-        ArrayList<List<String>> mUrisList = (ArrayList<List<String>>) intent.getSerializableExtra(KEY_ICE_SERVER_URI);
-        mRegion = intent.getStringExtra(KEY_REGION);
-        mCameraFacingFront = intent.getBooleanExtra(KEY_CAMERA_FRONT_FACING, true);
+        mClientId = UUID.randomUUID().toString();
+
+        master = false;
+        isAudioSent = false;
+
+        ArrayList<String> mUserNames = new ArrayList<String>();
+        mUserNames.add(USERNAME1);
+       mUserNames.add(USERNAME2);
+
+        ArrayList<String> mPasswords = new ArrayList<String>();
+        mPasswords.add(PASSWORD1);
+        mPasswords.add(PASSWORD2);
+
+
+        ArrayList<List<String>> mUrisList = new ArrayList<List<String>>();
+        mUrisList.add(URIS1);
+        mUrisList.add(URIS2);
+
+
+        mRegion = "sa-east-1";
+        mCameraFacingFront = true;
 
         rootEglBase = EglBase.create();
 
@@ -423,7 +430,7 @@ public class WebRtcActivity extends AppCompatActivity {
         if (mUrisList != null) {
             for (int i = 0; i < mUrisList.size(); i++) {
                 String turnServer = mUrisList.get(i).toString();
-                if( turnServer != null) {
+                if (turnServer != null) {
                     IceServer iceServer = IceServer.builder(turnServer.replace("[", "").replace("]", ""))
                             .setUsername(mUserNames.get(i))
                             .setPassword(mPasswords.get(i))
@@ -462,7 +469,7 @@ public class WebRtcActivity extends AppCompatActivity {
         localVideoTrack = peerConnectionFactory.createVideoTrack(VideoTrackID, videoSource);
         localVideoTrack.addSink(localView);
 
-        if(isAudioSent) {
+        if (isAudioSent) {
 
             AudioSource audioSource = peerConnectionFactory.createAudioSource(new MediaConstraints());
             localAudioTrack = peerConnectionFactory.createAudioTrack(AudioTrackID, audioSource);
@@ -658,7 +665,7 @@ public class WebRtcActivity extends AppCompatActivity {
 
         localPeer.addTrack(stream.videoTracks.get(0), Collections.singletonList(stream.getId()));
 
-        if(isAudioSent) {
+        if (isAudioSent) {
             if (!stream.addTrack(localAudioTrack)) {
 
                 Log.e(TAG, "Add audio track failed");
@@ -722,7 +729,6 @@ public class WebRtcActivity extends AppCompatActivity {
         sdpMediaConstraints.mandatory.add(new MediaConstraints.KeyValuePair("OfferToReceiveAudio", "true"));
 
         if (localPeer == null) {
-
             createLocalPeerConnection();
         }
 
@@ -746,7 +752,6 @@ public class WebRtcActivity extends AppCompatActivity {
         }, sdpMediaConstraints);
     }
 
-
     // when local is set to be the master
     private void createSdpAnswer() {
 
@@ -769,18 +774,18 @@ public class WebRtcActivity extends AppCompatActivity {
 
     private void addRemoteStreamToVideoView(MediaStream stream) {
 
-        final VideoTrack remoteVideoTrack = stream.videoTracks != null && stream.videoTracks.size() > 0? stream.videoTracks.get(0) : null;
+        final VideoTrack remoteVideoTrack = stream.videoTracks != null && stream.videoTracks.size() > 0 ? stream.videoTracks.get(0) : null;
 
-        AudioTrack remoteAudioTrack  = stream.audioTracks != null && stream.audioTracks.size() > 0 ? stream.audioTracks.get(0) : null;
+        AudioTrack remoteAudioTrack = stream.audioTracks != null && stream.audioTracks.size() > 0 ? stream.audioTracks.get(0) : null;
 
-        if(remoteAudioTrack != null ) {
+        if (remoteAudioTrack != null) {
             remoteAudioTrack.setEnabled(true);
             Log.d(TAG, "remoteAudioTrack received: State=" + remoteAudioTrack.state().name());
             audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
             audioManager.setSpeakerphoneOn(true);
         }
 
-        if(remoteVideoTrack != null) {
+        if (remoteVideoTrack != null) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -800,20 +805,6 @@ public class WebRtcActivity extends AppCompatActivity {
 
     }
 
-
-    private URI getSignedUri(String masterEndpoint, String viewerEndpoint) {
-        URI signedUri;
-
-        if (master) {
-            signedUri = AwsV4Signer.sign(URI.create(masterEndpoint), mCreds.getAWSAccessKeyId(),
-                    mCreds.getAWSSecretKey(), mCreds instanceof AWSSessionCredentials ? ((AWSSessionCredentials) mCreds).getSessionToken() : "", URI.create(mWssEndpoint), mRegion);
-        } else {
-            signedUri = AwsV4Signer.sign(URI.create(viewerEndpoint), mCreds.getAWSAccessKeyId(),
-                    mCreds.getAWSSecretKey(), mCreds instanceof AWSSessionCredentials ? ((AWSSessionCredentials)mCreds).getSessionToken() : "", URI.create(mWssEndpoint), mRegion);
-        }
-        return signedUri;
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     private void resizeLocalView() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -826,6 +817,7 @@ public class WebRtcActivity extends AppCompatActivity {
             private final int mMarginRight = displayMetrics.widthPixels;
             private final int mMarginBottom = displayMetrics.heightPixels;
             private int deltaOfDownXAndMargin, deltaOfDownYAndMargin;
+
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 final int X = (int) motionEvent.getRawX();
