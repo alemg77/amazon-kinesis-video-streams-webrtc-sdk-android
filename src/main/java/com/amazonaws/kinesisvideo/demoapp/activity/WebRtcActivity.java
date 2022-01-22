@@ -70,27 +70,27 @@ public class WebRtcActivity extends AppCompatActivity {
 
 
     private static String WSS_SIGN_URL =
-            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MDRXRCLRJ%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T194939Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDUaDBNxhCEYD57NjuHJ8iKCATaunQSmhR4WthCkIjNmD63k5f0%252B3YKcT8qfObFj1QzZR%252FrPgSkKYi83DlJEWnITou9IfhWkuw1fQbFCyuekdIk3tomq8WFAV%252FDzRz%252F8tKBUl6ZIgcv6KYFu4jIUnZw4aN3m3LsL7NT8Vq5ccEjQ7%252FZZFySYtIKjloW4%252BSl%252BK3A%252FLfoo07%252BxjwYyKKz4kkzblc4rCfKnqqpj7iqpIWaQ02rULUu%252F8K%252F1ADPFav3fO7dnnow%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=4c6bf22a4d52eb822606423b74d14be1110c40d35c1501a5c0584e79e2b5fbce"
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MKUVT5RUY%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T195901Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDUaDJVT32%252BK4c%252F8v2hg6SKCAROhzT91r1Opgg0yUAMuYNAfd7hgQ49VPDaRYre%252F1FqUZn6o18XMbeTTVQBKamzPlt3VIYCd3NDR6QWgvSRVfLEmLzF%252FPWzet%252FGyyWH3IOFom98i2eVl1gVTsZhEhyh7TA8ScZ41OZUuNTc%252BkQDe4x3KhtgwnCRT6GAq4x8G4JS5x0MohcSxjwYyKBRlG45NbhzW5%252BZu4z4zKrYKc5GhjSQh%252BOM12IWBT6d5OCrxYCwZZM0%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=ecc230213d8dfbf8979dffb58ce1e6463593ec2cac4740ef84f356975c5b4c56"
             ;
 
-    private static String PASSWORD1 = "adPNuKhqF+zMl9G+y2Owp563gYz5xpx5osWhcooium0=";
+    private static String PASSWORD1 = "As/AwSmQNQENoQ/G7mPkIlN16k0ifM6jjiDOzQdpUhQ=";
 
     private static List<String> URIS1 = Stream.of(
-            "turn:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
     private static String USERNAME1 =
-            "1642881279:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            "1642881840:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
             ;
 
-    private static String PASSWORD2 = "3bTbSubI9sXgHf7LklN0dJ6edApbEHsGJ5yzGuJmVmA=";
+    private static String PASSWORD2 = "qyZ00NQkZGRBIZCYyhUOqQg9bwOVyPj59h5CHEwOfnE=";
 
     private static List<String> URIS2 = Stream.of(
-            "turn:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
     private static String USERNAME2 = USERNAME1;
@@ -108,10 +108,7 @@ public class WebRtcActivity extends AppCompatActivity {
     private int originalAudioMode;
     private boolean originalSpeakerphoneOn;
 
-    private AudioTrack localAudioTrack;
-
-    private SurfaceViewRenderer localView;
-    private SurfaceViewRenderer remoteView;
+    private SurfaceViewRenderer videoView;
 
     private PeerConnection localPeer;
 
@@ -293,9 +290,9 @@ public class WebRtcActivity extends AppCompatActivity {
             rootEglBase = null;
         }
 
-        if (remoteView != null) {
-            remoteView.release();
-            remoteView = null;
+        if (videoView != null) {
+            videoView.release();
+            videoView = null;
         }
 
         if (localPeer != null) {
@@ -307,12 +304,6 @@ public class WebRtcActivity extends AppCompatActivity {
             videoSource.dispose();
             videoSource = null;
         }
-
-        if (localView != null) {
-            localView.release();
-            localView = null;
-        }
-
         if (client != null) {
             client.disconnect();
             client = null;
@@ -406,11 +397,11 @@ public class WebRtcActivity extends AppCompatActivity {
                         .setVideoEncoderFactory(new DefaultVideoEncoderFactory(rootEglBase.getEglBaseContext(), ENABLE_INTEL_VP8_ENCODER, ENABLE_H264_HIGH_PROFILE))
                         .createPeerConnectionFactory();
 
-        // Local video view
-        localView = findViewById(R.id.local_view);
-        localView.init(rootEglBase.getEglBaseContext(), null);
-        localView.setEnableHardwareScaler(true);
 
+
+        // Local video view
+        videoView = findViewById(R.id.video_view);
+        videoView.init(rootEglBase.getEglBaseContext(), null);
 
         videoSource = peerConnectionFactory.createVideoSource(false);
         SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.create(Thread.currentThread().getName(), rootEglBase.getEglBaseContext());
@@ -418,9 +409,6 @@ public class WebRtcActivity extends AppCompatActivity {
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         originalAudioMode = audioManager.getMode();
         originalSpeakerphoneOn = audioManager.isSpeakerphoneOn();
-
-        remoteView = findViewById(R.id.remote_view);
-        remoteView.init(rootEglBase.getEglBaseContext(), null);
 
         createNotificationChannel();
     }
@@ -630,9 +618,12 @@ public class WebRtcActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         Log.d(TAG, "remoteVideoTrackId=" + remoteVideoTrack.id() + " videoTrackState=" + remoteVideoTrack.state());
-                        resizeLocalView();
-                        remoteVideoTrack.addSink(remoteView);
-                        //resizeRemoteView();
+
+                        DisplayMetrics displayMetrics = new DisplayMetrics();
+                        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+                        remoteVideoTrack.addSink(videoView);
+
                     } catch (Exception e) {
                         Log.e(TAG, "Error in setting remote video view" + e);
                     }
@@ -641,16 +632,6 @@ public class WebRtcActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "Error in setting remote track");
         }
-
-    }
-
-    private void resizeLocalView() {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        final ViewGroup.LayoutParams lp = localView.getLayoutParams();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        lp.height = (int) (displayMetrics.heightPixels * 0.25);
-        lp.width = (int) (displayMetrics.widthPixels * 0.25);
-        localView.setLayoutParams(lp);
     }
 
 
