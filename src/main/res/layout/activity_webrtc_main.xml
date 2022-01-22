@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.amazonaws.kinesisvideo.demoapp.activity.WebRtcActivity"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
+    android:layout_height="270dp"
+    android:layout_gravity="center"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9">
+        android:layout_height="match_parent">
 
         <org.webrtc.SurfaceViewRenderer
             android:id="@+id/video_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            />
 
     </FrameLayout>
 
