@@ -70,10 +70,10 @@ public class WebRtcActivity extends AppCompatActivity {
 
 
     private static String WSS_SIGN_URL =
-            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MCN47OEWP%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T193932Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDUaDL25aFrfWO4RG7LyZyKCAb8MRPRd3t4gh2O25pT2xp6%252BlLmbkqhOJHGfybmW361U4yAtlVVpxGMj43SfrBiwkxZ7D9UrMQKnUVUz%252FS9RVpq%252BP1zRKY7mm9VrYqP4sznDWmtBLjUgDr2bx11pMSgBfWTUKsN5fdvuJlX7QiKwetuIs%252BQExYbw5j9PRkV4M4%252Fz3Xwo9LqxjwYyKG0%252BT1whE5ZsED0u4DM%252FHQ%252B6tcDve4S37uwjHs6EtTa1%252Bt5EL4w3SY0%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=fde26e9d0351e358a00d14a8ba91b122deeb2cb39cf2a4726894782d875e9fd6"
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MDRXRCLRJ%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T194939Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDUaDBNxhCEYD57NjuHJ8iKCATaunQSmhR4WthCkIjNmD63k5f0%252B3YKcT8qfObFj1QzZR%252FrPgSkKYi83DlJEWnITou9IfhWkuw1fQbFCyuekdIk3tomq8WFAV%252FDzRz%252F8tKBUl6ZIgcv6KYFu4jIUnZw4aN3m3LsL7NT8Vq5ccEjQ7%252FZZFySYtIKjloW4%252BSl%252BK3A%252FLfoo07%252BxjwYyKKz4kkzblc4rCfKnqqpj7iqpIWaQ02rULUu%252F8K%252F1ADPFav3fO7dnnow%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=4c6bf22a4d52eb822606423b74d14be1110c40d35c1501a5c0584e79e2b5fbce"
             ;
 
-    private static String PASSWORD1 = "ughUVe/PZ5Acvyz/bdJU2fN6q8eFdCl7mhpjSV18RfY=";
+    private static String PASSWORD1 = "adPNuKhqF+zMl9G+y2Owp563gYz5xpx5osWhcooium0=";
 
     private static List<String> URIS1 = Stream.of(
             "turn:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
@@ -82,10 +82,10 @@ public class WebRtcActivity extends AppCompatActivity {
     ).collect(Collectors.toList());
 
     private static String USERNAME1 =
-            "1642880672:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            "1642881279:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
             ;
 
-    private static String PASSWORD2 = "iwg9pdgbUjMNf97rHHwtYLrEGSa1Mw+ihO3rKZybd3g=";
+    private static String PASSWORD2 = "3bTbSubI9sXgHf7LklN0dJ6edApbEHsGJ5yzGuJmVmA=";
 
     private static List<String> URIS2 = Stream.of(
             "turn:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
@@ -155,7 +155,6 @@ public class WebRtcActivity extends AppCompatActivity {
                 recipientClientId = offerEvent.getSenderClientId();
                 Log.d(TAG, "Received SDP offer for client ID: " + recipientClientId + ".Creating answer");
 
-                createSdpAnswer();
             }
 
             @Override
@@ -610,25 +609,7 @@ public class WebRtcActivity extends AppCompatActivity {
         }, sdpMediaConstraints);
     }
 
-    // when local is set to be the master
-    private void createSdpAnswer() {
 
-        localPeer.createAnswer(new KinesisVideoSdpObserver() {
-
-            @Override
-            public void onCreateSuccess(SessionDescription sessionDescription) {
-                Log.d(TAG, "Creating answer : success");
-                super.onCreateSuccess(sessionDescription);
-                localPeer.setLocalDescription(new KinesisVideoSdpObserver(), sessionDescription);
-                Message answer = Message.createAnswerMessage(sessionDescription, master, recipientClientId);
-                client.sendSdpAnswer(answer);
-
-                peerConnectionFoundMap.put(recipientClientId, localPeer);
-                handlePendingIceCandidates(recipientClientId);
-            }
-        }, new MediaConstraints());
-
-    }
 
     private void addRemoteStreamToVideoView(MediaStream stream) {
 
