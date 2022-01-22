@@ -1,8 +1,5 @@
 package com.amazonaws.kinesisvideo.demoapp.activity;
 
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_CAMERA_FRONT_FACING;
-import static com.amazonaws.kinesisvideo.demoapp.fragment.StreamWebRtcConfigurationFragment.KEY_REGION;
-
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -36,16 +33,12 @@ import com.amazonaws.kinesisvideo.signaling.tyrus.SignalingServiceWebSocketClien
 import com.amazonaws.kinesisvideo.webrtc.KinesisVideoPeerConnection;
 import com.amazonaws.kinesisvideo.webrtc.KinesisVideoSdpObserver;
 
-import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
-import org.webrtc.Camera1Enumerator;
-import org.webrtc.CameraEnumerator;
 import org.webrtc.DataChannel;
 import org.webrtc.DefaultVideoDecoderFactory;
 import org.webrtc.DefaultVideoEncoderFactory;
 import org.webrtc.EglBase;
 import org.webrtc.IceCandidate;
-import org.webrtc.Logging;
 import org.webrtc.MediaConstraints;
 import org.webrtc.MediaStream;
 import org.webrtc.PeerConnection;
@@ -57,14 +50,12 @@ import org.webrtc.RTCStatsReport;
 import org.webrtc.SessionDescription;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.SurfaceViewRenderer;
-import org.webrtc.VideoCapturer;
 import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -82,38 +73,33 @@ public class WebRtcActivity extends AppCompatActivity {
 
 
     private static String WSS_SIGN_URL =
-            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MF6O72EH3%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T190119Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDQaDOrKe2Ib5JmK0f2i3SKCAf6rAf%252BBbiejj9gq0b4RatuybzrwsVK1e83Xmqz%252FkOmvK%252FvpSU9zmZTn%252F1BCYR71NFk13bunDtHPqn7RTjNgu4dsiWsfJTOaYZr%252Fe173CfzxYvvCym4PDJ3P5OXvMG4P%252BRx6V%252F%252BDezun8et9mLSHU%252BaaL8F4kltykmCF0q%252FBbSTnwWco%252F6ixjwYyKHSsN7SEM5A4AhFboWlb7uMYMfNjITKtLpjp%252FiIzxmXAgnBDSUclfJE%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=2602402b32e9b90c10797e9e425d506aa99ca07995539f64a764a8f8d25014e1"
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MMGTRN3MX%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T192033Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDUaDG%252FrTTRcgEIydtnuHiKCAdvo6YD1AmS2suQrm7PZBLY4WRxhE2T28WRXiIGaisi98YLT79zJQuKF9YS4b7HUVoNYZP5vlFbU4tP5yb0YA%252BUve5TaxU64mBz76zMsVAaKoO14htUKN2fZeA24ke30i9jQbApiBQ39XUWtNIoUiwvf%252B6bR9d5p0sfMVlNBuhXC494ogbKxjwYyKNi9yuNvf8%252FOYq1%252BycbHH%252FC8VrjcFSgwEnvYt6SE3Q6qebCqDLUdzUc%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=36acef32c3e13acac51fde17ad1873dfdbee32f20cd8dc0519a98ba90b26cd4c"
     ;
 
-
-    private static String PASSWORD1 = "atFbTLDtAvdDEFAMIHSInQPsNswzzRf5RrP0fajFdik=";
-    private static String USERNAME1 =
-            "1642877703:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
-    ;
+    private static String PASSWORD1 = "xeSK7TocJbyw0K8W+q62j9KheZy2aUp22orlWPgRlNc=";
 
     private static List<String> URIS1 = Stream.of(
-            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
-    ).collect(Collectors.toList());
-
-    private static String PASSWORD2 = "/CA+nTZweeeBbeW1ZCnqTCs5aRXEUOWWv9hthyZ0N3Y=";
-    private static String USERNAME2 =
-            "1642878379:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
-            ;
-
-    private static List<String> URIS2 = Stream.of(
             "turn:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
             "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
             "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
-    private static final String AudioTrackID = "KvsAudioTrack";
-    private static final String VideoTrackID = "KvsVideoTrack";
-    private static final String LOCAL_MEDIA_STREAM_LABEL = "KvsLocalMediaStream";
-    private static final int VIDEO_SIZE_WIDTH = 400;
-    private static final int VIDEO_SIZE_HEIGHT = 300;
-    private static final int VIDEO_FPS = 30;
+    private static String USERNAME1 =
+            "1642879533:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            ;
+
+    private static String PASSWORD2 = "9GJYHWqfs70okgInZBsIfeb2EVQxTn7AFx7EeLcxWMY=";
+
+    private static List<String> URIS2 = Stream.of(
+            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+    ).collect(Collectors.toList());
+
+    private static String USERNAME2 =
+            "1642879533:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            ;
+
     private static final String CHANNEL_ID = "WebRtcDataChannel";
     private static final boolean ENABLE_INTEL_VP8_ENCODER = true;
     private static final boolean ENABLE_H264_HIGH_PROFILE = true;
@@ -152,8 +138,6 @@ public class WebRtcActivity extends AppCompatActivity {
     private String mClientId;
 
     private String mRegion;
-
-    private boolean mCameraFacingFront = true;
 
     // Map to keep track of established peer connections by IDs
     private HashMap<String, PeerConnection> peerConnectionFoundMap = new HashMap<String, PeerConnection>();
@@ -393,7 +377,6 @@ public class WebRtcActivity extends AppCompatActivity {
         mUrisList.add(URIS2);
 
         mRegion = "sa-east-1";
-        mCameraFacingFront = true;
 
         rootEglBase = EglBase.create();
 
@@ -453,37 +436,6 @@ public class WebRtcActivity extends AppCompatActivity {
         createNotificationChannel();
     }
 
-    private VideoCapturer createVideoCapturer() {
-
-        VideoCapturer videoCapturer;
-
-        Logging.d(TAG, "Create camera");
-        videoCapturer = createCameraCapturer(new Camera1Enumerator(false));
-
-        return videoCapturer;
-    }
-
-    private VideoCapturer createCameraCapturer(CameraEnumerator enumerator) {
-
-        final String[] deviceNames = enumerator.getDeviceNames();
-
-        Logging.d(TAG, "Enumerating cameras");
-
-        for (String deviceName : deviceNames) {
-
-            if (mCameraFacingFront ? enumerator.isFrontFacing(deviceName) : enumerator.isBackFacing(deviceName)) {
-
-                Logging.d(TAG, "Camera created");
-                VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, null);
-
-                if (videoCapturer != null) {
-                    return videoCapturer;
-                }
-            }
-        }
-
-        return null;
-    }
 
     private void createLocalPeerConnection() {
 
