@@ -70,27 +70,27 @@ public class WebRtcActivity extends AppCompatActivity {
 
 
     private static String WSS_SIGN_URL =
-            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MEADBCXG6%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T224847Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDgaDAe%252BACsBXHWTUXlhHiKCAQG0hLfLTv9JZ6jC9Fs7h75ccWFZSCrMJBBgAh018pZB8njt4usSnNf32vtrjM3DepF4VlrP79o7NhvuDHbhR7HCR9h05t3K1%252BXdNKSDmew28g1nTQ9iSSDPvFOtsXl2mjwkgcPce5VzsIQZhnibf7X5F9ciwq3elTRoWyiRLiqWQTwoz5OyjwYyKIGx%252Be7T04aJeY%252BRTbZA54cgNhKwZLfhRLyr7WitZirMt3GSNqC%252Fo7o%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=7d626b0986afd4b6eb7eb46b5455e0a4738d7747bb1bd6584a4d6b20002b1a87"
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MIGXRVCOK%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T230011Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDgaDIaxVqgDfnfL%252BqpTbiKCARlkmPsGqRJFvTcCMltsahnvlIevtLYpiHY%252BS1HoSLbiQg3H7RXXK4wDX6bXkklMLVAcf5NRC%252BZ5K%252Bi1jODpXpWb6q2%252FTVgsoW3F2ztUZdV3tUORXynCHubrEmw%252B1bwFH3Yy1sANlwIfKf8J2QJ1Rj1KNyKRyAbDDdWbI4OnVpU6F8co%252B5iyjwYyKAL5duEJygKxDyHVt6DgxPRghsZaF3LQ%252FJPBl5OkiLq2632YtCk52A4%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=ef54c157759513bbf163fa57a81fb4fed08a5016f56faa412d0146d0cee769e6"
             ;
 
-    private static String PASSWORD1 = "gCoL6ncpy06AULlai6XPJOi4zprKSAy5c7pOBhoXfPI=";
+    private static String PASSWORD1 = "L3BFtGunS5t3VnhVUKAIdL/ee6aDseXJVWij0D1LVJU=";
 
     private static List<String> URIS1 = Stream.of(
-            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-158-138.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
     private static String USERNAME1 =
-            "1642892027:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            "1642892710:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
             ;
 
-    private static String PASSWORD2 = "5Y4Ykbbd2nUuu/lJ+mD8rksWRkyiXxlD1GWtp9SToIA=";
+    private static String PASSWORD2 = "5EAGnPQ0ew0sfazC7KDV3xKU0YjpC7/cUSrQVHlBn4Y=";
 
     private static List<String> URIS2 = Stream.of(
-            "turn:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+            "turn:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:54-94-94-240.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
     private static String USERNAME2 = USERNAME1;
