@@ -70,27 +70,27 @@ public class WebRtcActivity extends AppCompatActivity {
 
 
     private static String WSS_SIGN_URL =
-            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MG53L2O5D%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T201712Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDYaDJ4tjMo0MG%252F2DXVZNiKCAWa7WZPEUMplDM%252BTMQGXXvGGQCSuW%252FLOYgRzu4MvEm9aew3ttWPGsZULhGvgjSzSIg8MDwBWJl0bAqWSHTnEJvAJNgUi%252FSQp3bAD7RLAqiRFXqnxnPr8D21QjAjDftF20OVNw%252FYzt3XY7b3IN%252FyWR4g6KynCkzdRMtTGwXU2mxbpC4Yox8yxjwYyKPZ1n7%252FNJyIWlp7yLNjchfq4mTVKA7PflydSwditsgpIZYFWffkoYwo%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=c202bb3cc5969ce916d1b90b5f584a941d11a53f74738dd27087607748676410"
+            "wss://v-b35a547e.kinesisvideo.sa-east-1.amazonaws.com/?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-ChannelARN=arn%253Aaws%253Akinesisvideo%253Asa-east-1%253A183521707800%253Achannel%252F227d64963babf67b8df489dd8cee8a453d23737f6b30706eb90f2fa2a657909b%252F1635245940094&X-Amz-ClientId=229285051375271936&X-Amz-Credential=ASIASVOV7A4MDDX5QY47%252F20220122%252Fsa-east-1%252Fkinesisvideo%252Faws4_request&X-Amz-Date=20220122T223702Z&X-Amz-Expires=299&X-Amz-Security-Token=FwoGZXIvYXdzEDgaDIlsgPSc25R5%252BHDXxSKCAQdkp9NAkd8SEP6yA%252FJpvM3fyQgYAiZPY8WxGzmMC9STZ9guHlas4%252BUzMQycANf92hdTgH%252Fv8mKJywGv0wyiT9s2oqmTUANeNik%252BjBXqCTU5%252BRIuETQLiKS4nQcMcIenqNm104uFmgTciuI8aN2Uo7OM%252FVbjAjMedOfHWw7OKPlrJoUojo6yjwYyKMUbcl%252F%252BLcsqKFtdh5wcKknunbtVYduPH3kLRnv9sYoCa0uLVrRhFEY%253D&X-Amz-SignedHeaders=host&X-Amz-Signature=376a989aaa4993a732950ef681a5b82cad0caae60a7e03d57f6840d7c46c2059"
             ;
 
-    private static String PASSWORD1 = "W9vfqrssZomADlYePtLQYj4d9kue/nIqB+k26e2NFr4=";
+    private static String PASSWORD1 = "AXhUltBsZWe+dH6FjEe1NzVreWJ/Vhnx1GRThZIpOOQ=";
 
     private static List<String> URIS1 = Stream.of(
-            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
-            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
-    ).collect(Collectors.toList());
-
-    private static String USERNAME1 =
-            "1642882931:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
-            ;
-
-    private static String PASSWORD2 = "uhhYdYycgVqI5tMMK7GjGUdeU3BfgucrcxSFWs0Lhjc=";
-
-    private static List<String> URIS2 = Stream.of(
             "turn:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
             "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
             "turns:18-231-48-130.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
+    ).collect(Collectors.toList());
+
+    private static String USERNAME1 =
+            "1642891322:djE6YXJuOmF3czpraW5lc2lzdmlkZW86c2EtZWFzdC0xOjE4MzUyMTcwNzgwMDpjaGFubmVsLzIyN2Q2NDk2M2JhYmY2N2I4ZGY0ODlkZDhjZWU4YTQ1M2QyMzczN2Y2YjMwNzA2ZWI5MGYyZmEyYTY1NzkwOWIvMTYzNTI0NTk0MDA5NA=="
+            ;
+
+    private static String PASSWORD2 = "bGzMrynIe1vVbFKA1lTnbImXs27r7xsT736/qABoydc=";
+
+    private static List<String> URIS2 = Stream.of(
+            "turn:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=udp",
+            "turns:15-228-226-166.t-c949c048.kinesisvideo.sa-east-1.amazonaws.com:443?transport=tcp"
     ).collect(Collectors.toList());
 
     private static String USERNAME2 = USERNAME1;
